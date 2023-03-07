@@ -6,27 +6,45 @@ public class User {
 
     private String email;
 
-    public String getLogin(String login){
+    public User(String login, String email) {
+        this.login = login;
+        this.email = email;
+    }
+
+    public String getLogin() {
         return login;
     }
 
-    public String getLogin(){
-        return null;
+    public void setLogin(String login) {
+        if (login == null) {
+            throw new IllegalArgumentException("Неправильный логин");
+        } else
+            this.login = login;
     }
 
-    public String getEmail(String email){
+    public String getEmail() {
         return email;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "login='" + login + '\'' +
-                ", email='" + email + '\'' +
-                '}';
+    public void setEmail(String email) {
+        if (email == "fox_23jmail.com") {
+            throw new IllegalArgumentException("Неправильный email");
+        } else
+            this.email = email;
     }
 
-    public String getUser(){
-        return toString();
+    public void createUser(String login, String email) {
+        if (login == "fox_23@jmail.com") {
+            throw new IllegalArgumentException("Логин не может быть таким же как емэйл");
+        } else
+            this.login = login;
+        if (email == "fox") {
+            throw new IllegalArgumentException("Емэйл не может быть таким же как логин");
+        } else {
+            this.email = email;
+        }
     }
 }
+
+
+

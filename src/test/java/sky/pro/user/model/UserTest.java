@@ -14,10 +14,16 @@ class UserTest {
 
     private static String email;
 
-    private final User user = new User();
+    private final User user = new User(login, email);
 
+    private final static String LOGIN = "fox";
     public static final String LOGIN_NULL = null;
+
     public static final String EMAIL_FAULT = "fox_23jmail.com";
+
+    public static final String ILLEGAL_LOGIN = "fox_23@jmail.com";
+
+    public static final String ILLEGAL_EMAIL = "fox";
 
     @BeforeAll
     private static void createUser() {
@@ -33,31 +39,25 @@ class UserTest {
 
     @Test
     void shouldGetLogin() {
-        Assertions.assertEquals("fox", user.getLogin(login));
+        Assertions.assertEquals(LOGIN, user.getLogin());
     }
 
     @Test
     void shouldGetLoginWhenLoginIsNull() {
-        String result = user.getLogin(null);
-        Assertions.assertEquals(LOGIN_NULL, result);
+        Assertions.assertThrows(IllegalArgumentException.class, ()->user.setLogin(LOGIN_NULL));
     }
 
     @Test
     void shouldGetEmailWhenIsFault() {
-        String result = user.getEmail(EMAIL_FAULT);
-        Assertions.assertTrue(result.contains(EMAIL_FAULT));
+        Assertions.assertThrows(IllegalArgumentException.class, ()->user.setEmail(EMAIL_FAULT));
 
     }
 
     @Test
-    void shouldGetEmail() {
-        Assertions.assertEquals("fox_23@jmail.com", user.getEmail(email));
+    void shouldThrowIllegalArgumentExceptionWhenLoginEqualsEmail() {
+        Assertions.assertThrows(IllegalArgumentException.class, ()->user.createUser(ILLEGAL_LOGIN, ILLEGAL_EMAIL));
+
     }
 
-    @Test
-    void shouldGetUser(){
-        String result = user.getUser();
-        Assertions.assertEquals(user.toString(), result);
-    }
 
 }
