@@ -17,6 +17,8 @@ class UserTest {
     private final User user = new User(login, email);
 
     private final static String LOGIN = "fox";
+
+    private final static String EMAIL = "fox_23@jmail.com";
     public static final String LOGIN_NULL = null;
 
     public static final String EMAIL_FAULT = "fox_23jmail.com";
@@ -39,6 +41,7 @@ class UserTest {
 
     @Test
     void shouldGetLogin() {
+        user.createUser(LOGIN, EMAIL);
         Assertions.assertEquals(LOGIN, user.getLogin());
     }
 
@@ -49,13 +52,14 @@ class UserTest {
 
     @Test
     void shouldGetEmailWhenIsFault() {
-        Assertions.assertThrows(IllegalArgumentException.class, ()->user.setEmail(EMAIL_FAULT));
+        Assertions.assertThrows(IllegalArgumentException.class, ()->user.setEmail(ILLEGAL_LOGIN));
 
     }
 
     @Test
     void shouldThrowIllegalArgumentExceptionWhenLoginEqualsEmail() {
-        Assertions.assertThrows(IllegalArgumentException.class, ()->user.createUser(ILLEGAL_LOGIN, ILLEGAL_EMAIL));
+
+        Assertions.assertThrows(IllegalArgumentException.class, ()->user.createUser(LOGIN, LOGIN));
 
     }
 

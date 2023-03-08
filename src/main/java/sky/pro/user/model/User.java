@@ -27,18 +27,18 @@ public class User {
     }
 
     public void setEmail(String email) {
-        if (email == "fox_23jmail.com") {
+        if (email.contains("@")) {
             throw new IllegalArgumentException("Неправильный email");
         } else
             this.email = email;
     }
 
     public void createUser(String login, String email) {
-        if (login == "fox_23@jmail.com") {
+        if (login.equalsIgnoreCase(email)) {
             throw new IllegalArgumentException("Логин не может быть таким же как емэйл");
         } else
             this.login = login;
-        if (email == "fox") {
+        if (email.equalsIgnoreCase(login)) {
             throw new IllegalArgumentException("Емэйл не может быть таким же как логин");
         } else {
             this.email = email;
