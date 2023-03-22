@@ -1,0 +1,56 @@
+select * from employee;
+
+INSERT INTO employee (first_name, last_name, gender, age)
+VALUES ('Семён', 'Семнов', 'муж', 41);
+
+SELECT * FROM employee;
+
+UPDATE employee SET first_name = 'Игорь', last_name = 'Карев', gender = 'муж', age = 43 WHERE id = 8;
+
+INSERT INTO employee (first_name, last_name, gender, age)
+VALUES ('Андрей', 'Логинов', 'муж', 56);
+
+INSERT INTO employee (first_name, last_name, gender, age)
+VALUES ('Ольга', 'Цветкова', 'жен', 31);
+
+SELECT * FROM employee;
+
+SELECT first_name AS Имя, last_name AS Фамилия FROM employee;
+
+SELECT last_name AS Фамилия
+FROM employee
+ORDER BY last_name DESC;
+
+SELECT * FROM employee
+WHERE age BETWEEN 30 AND 40;
+
+SELECT * FROM employee
+WHERE first_name
+LIKE '______';
+
+UPDATE employee SET first_name = 'Ольга' WHERE id = 9;
+
+UPDATE employee SET first_name = 'Игорь' WHERE id = 10;
+
+
+SELECT * FROM employee
+ORDER BY first_name;
+
+
+SELECT first_name AS Имя,
+SUM(age) AS Суммарный_возраст
+FROM employee
+GROUP BY Имя;
+
+SELECT first_name AS Имя,
+MIN(age) AS Минимальный_возраст
+FROM employee
+GROUP BY Имя
+HAVING MIN(age) < 30;
+
+SELECT first_name AS Имя,
+MAX(age) AS Максимальный_возраст
+FROM employee
+GROUP BY Имя
+HAVING COUNT(first_name) < 2;
+
