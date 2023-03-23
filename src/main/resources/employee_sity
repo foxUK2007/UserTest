@@ -1,0 +1,89 @@
+CREATE TABLE sity (sity_id   BIGSERIAL   NOT NULL PRIMARY KEY,
+sity_name VARCHAR(50) NOT NULL);
+
+INSERT INTO sity (sity_name)
+VALUES ('Бостон');
+
+INSERT INTO sity (sity_name)
+VALUES ('Осло');
+
+INSERT INTO sity (sity_name)
+VALUES ('Париж');
+
+INSERT INTO sity (sity_name)
+VALUES ('Зеленоград');
+
+INSERT INTO sity (sity_name)
+VALUES ('Токио');
+
+SELECT *
+FROM sity;
+
+ALTER TABLE employee
+    ADD COLUMN sity_id INT;
+
+ALTER TABLE employee
+ADD FOREIGN KEY (sity_id)
+REFERENCES sity (sity_id);
+
+INSERT INTO sity (sity_name)
+VALUES ('Бостон');
+
+INSERT INTO sity (sity_name)
+VALUES ('Осло');
+
+INSERT INTO sity (sity_name)
+VALUES ('Париж');
+
+INSERT INTO sity (sity_name)
+VALUES ('Токио');
+
+INSERT INTO sity (sity_name)
+VALUES ('Зеленоград');
+
+SELECT * FROM sity;
+
+SELECT *
+FROM employee;
+
+UPDATE employee SET sity_id = 6
+WHERE id = 8;
+
+UPDATE employee SET sity_id = 7
+WHERE id = 9;
+
+UPDATE employee SET sity_id = 8
+WHERE id = 10;
+
+UPDATE employee SET sity_id = 9
+WHERE id = 12;
+
+UPDATE employee SET sity_id = 10
+WHERE id = 14;
+
+INSERT INTO sity (sity_name)
+VALUES ('Вашингтон');
+
+INSERT INTO employee (first_name, last_name, gender, age)
+VALUES ('Сергей', 'Стрелков', 'муж', 38);
+
+SELECT * FROM sity;
+
+SELECT * FROM employee;
+
+
+SELECT first_name, last_name, sity_name
+FROM employee
+INNER JOIN sity on employee.sity_id = sity.sity_id;
+
+SELECT sity_name, first_name, last_name
+FROM sity
+INNER JOIN employee on employee.sity_id = sity.sity_id;
+
+SELECT sity_name AS Город, first_name AS Имя
+FROM employee
+LEFT JOIN sity on employee.sity_id = sity.sity_id;
+
+SELECT sity_name AS Город, first_name AS Имя
+FROM sity
+LEFT JOIN employee on employee.sity_id = sity.sity_id;
