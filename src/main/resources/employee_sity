@@ -72,18 +72,18 @@ SELECT * FROM sity;
 SELECT * FROM employee;
 
 
-SELECT first_name, last_name, sity_name
-FROM employee
-INNER JOIN sity on employee.sity_id = sity.sity_id;
-
-SELECT sity_name, first_name, last_name
+SELECT sity_name AS Город, first_name AS Имя, last_name AS Фамилия
 FROM sity
 INNER JOIN employee on employee.sity_id = sity.sity_id;
 
-SELECT sity_name AS Город, first_name AS Имя
-FROM employee
-LEFT JOIN sity on employee.sity_id = sity.sity_id;
-
-SELECT sity_name AS Город, first_name AS Имя
+SELECT sity_name AS Город, first_name AS Имя, last_name AS Фамилия
 FROM sity
 LEFT JOIN employee on employee.sity_id = sity.sity_id;
+
+SELECT sity_name AS Город, first_name AS Имя, last_name AS Фамилия
+FROM sity
+FULL JOIN employee on employee.sity_id = sity.sity_id;
+
+SELECT sity_name AS Город, first_name AS Имя, last_name AS Фамилия
+FROM sity
+CROSS JOIN employee;
